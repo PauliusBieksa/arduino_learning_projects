@@ -9,7 +9,7 @@ float bV = 0;
 int rp = 11;
 int gp = 10;
 int bp = 9;
-int dt = 3000;
+int dt = 1500;
 
 rgb hsv_to_rgb(hsv colour)
 {
@@ -80,11 +80,14 @@ void setup() {
 }
 
 void loop() {
+  Serial.println("");
+  Serial.println("");
   hval = analogRead(huePin);
   bval = analogRead(brightnessPin);
 
   hV = 5. / 1023. * hval;
   bV = 5. / 1023. * bval;
+  Serial.println((String)"hue Voltage = " + hV);
 
   hsv_colour.h = hV * 360. / 5.;
   hsv_colour.s = 1.;
@@ -100,6 +103,7 @@ void loop() {
   rgb_colour = hsv_to_rgb(hsv_colour);
 
 
+  Serial.println((String)"rgb float values: (" + rgb_colour.r + ", " + rgb_colour.g + ", " + rgb_colour.b + ")");
   Serial.println((String)"rgb int values: (" + rgb_colour.r_int() + ", " + rgb_colour.g_int() + ", " + rgb_colour.b_int() + ")");
   Serial.println("");
   Serial.println("");
