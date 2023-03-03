@@ -9,7 +9,7 @@ float bV = 0;
 int rp = 11;
 int gp = 10;
 int bp = 9;
-int dt = 1500;
+int dt = 30;
 
 rgb hsv_to_rgb(hsv colour)
 {
@@ -76,37 +76,37 @@ void setup() {
   pinMode(gp, OUTPUT);
   pinMode(bp, OUTPUT);
 
-  Serial.begin(9600);
+  //Serial.begin(9600);
 }
 
 void loop() {
-  Serial.println("");
-  Serial.println("");
+  //Serial.println("");
+  //Serial.println("");
   hval = analogRead(huePin);
   bval = analogRead(brightnessPin);
 
   hV = 5. / 1023. * hval;
   bV = 5. / 1023. * bval;
-  Serial.println((String)"hue Voltage = " + hV);
+  //Serial.println((String)"hue Voltage = " + hV);
 
-  hsv_colour.h = hV * 360. / 5.;
+  hsv_colour.h = hV * 359.9 / 5.;
   hsv_colour.s = 1.;
   hsv_colour.v = bV / 5.; // / by 5 is to reduce to 0 - 1 range. Bigger scalar to reduce max value and reduce brightness
 
   // print hue and value
-  Serial.print("hue = ");
-  Serial.println(hsv_colour.h);
-  Serial.print("brightness = ");
-  Serial.println(hsv_colour.v);
-  Serial.println("");
+  //Serial.print("hue = ");
+  //Serial.println(hsv_colour.h);
+  //Serial.print("brightness = ");
+  //Serial.println(hsv_colour.v);
+  //Serial.println("");
 
   rgb_colour = hsv_to_rgb(hsv_colour);
 
 
-  Serial.println((String)"rgb float values: (" + rgb_colour.r + ", " + rgb_colour.g + ", " + rgb_colour.b + ")");
-  Serial.println((String)"rgb int values: (" + rgb_colour.r_int() + ", " + rgb_colour.g_int() + ", " + rgb_colour.b_int() + ")");
-  Serial.println("");
-  Serial.println("");
+  //Serial.println((String)"rgb float values: (" + rgb_colour.r + ", " + rgb_colour.g + ", " + rgb_colour.b + ")");
+  //Serial.println((String)"rgb int values: (" + rgb_colour.r_int() + ", " + rgb_colour.g_int() + ", " + rgb_colour.b_int() + ")");
+  //Serial.println("");
+  //Serial.println("");
 
   analogWrite(rp, rgb_colour.r_int());
   analogWrite(gp, rgb_colour.g_int());

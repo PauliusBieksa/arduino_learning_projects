@@ -47,17 +47,17 @@ struct rgb
   
   uint8_t r_int()
   {
-    return 256. * r;
+    return clamp(256. * r, 0., 255.9);
   }
   
   uint8_t g_int()
   {
-    return 256. * g;
+    return clamp(256. * g, 0., 255.9);
   }
   
   uint8_t b_int()
   {
-    return 256. * b;
+    return clamp(256. * b, 0., 255.9);
   }
 };
 
